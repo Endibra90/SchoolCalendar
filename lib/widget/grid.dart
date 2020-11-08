@@ -93,7 +93,18 @@ class _GridWidgetState extends State<GridWidget> {
                 } else ...{
                   Container(
                     padding: EdgeInsets.all(18),
-                    child: Text(listaDias[i]),
+                    child: Text(
+                      listaDias[i],
+                      style: TextStyle(
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 6.0,
+                            color: Color.fromARGB(255, 136, 14, 79),
+                          ),
+                        ],
+                      ),
+                    ),
                     color: Colors.pink[listaColores[i]],
                   )
                 }
@@ -102,44 +113,64 @@ class _GridWidgetState extends State<GridWidget> {
                 Container(
                     color: Colors.pink[listaColores[i]],
                     child: Row(
-                      children: [Text(listaHoras[i]['Horas'])],
+                      children: [
+                        Text(
+                          listaHoras[i]['Horas'],
+                          style: TextStyle(
+                            shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 6.0,
+                                color: Color.fromARGB(255, 136, 14, 79),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     )),
                 for (int y = 0; y < 7; y++) ...{
-                  if(listaHoras[i]['Horas']=='11:40' || listaHoras[i]['Horas']=='12:05')...{
+                  if (listaHoras[i]['Horas'] == '11:40' ||
+                      listaHoras[i]['Horas'] == '12:05') ...{
                     InkWell(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black12,
-                          border: Border.all(color: Colors.pink[100])),
-                    ),
-                  )
-                  }else...{
-                  InkWell(
-                    child: Container(
-                      child: Column(children: [
-                        Text(listaContenedores[i][y].clase,style:TextStyle(color:Colors.white),),
-                        Text(listaContenedores[i][y].aula,style:TextStyle(color:Colors.white),)
-                      ]),
-                      decoration: BoxDecoration(
-                          color: listaContenedores[i][y].color,
-                          border: Border.all(color: Colors.pink[100])),
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                            opaque: true,
-                            pageBuilder: (BuildContext context, _, __) {
-                              return FormWidget(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black12,
+                            border: Border.all(color: Colors.pink[100])),
+                      ),
+                    )
+                  } else ...{
+                    InkWell(
+                      child: Container(
+                        child: Column(children: [
+                          Text(
+                            listaContenedores[i][y].clase,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            listaContenedores[i][y].aula,
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ]),
+                        decoration: BoxDecoration(
+                            color: listaContenedores[i][y].color,
+                            border: Border.all(color: Colors.pink[100])),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              opaque: true,
+                              pageBuilder: (BuildContext context, _, __) {
+                                return FormWidget(
                                   cuadro: listaContenedores[i][y],
                                   lista: listaHoras,
                                   row: i,
                                   column: listaDias[y + 1],
-                                  );
-                            }),
-                      );
-              
-                    },
-                  )}
+                                );
+                              }),
+                        );
+                      },
+                    )
+                  }
                 }
               }
             ])),
