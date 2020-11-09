@@ -10,6 +10,7 @@ Widgets Utilizados:
 Modelos utilizados:
 
   -Cuadro(clase,hora,aula,color)
+  
 Api:
 
   -Apispreadsheets(coge los datos de un excel de drive y los devuelve en forma de API).
